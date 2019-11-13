@@ -1,0 +1,14 @@
+body {
+  font-size: 14px;
+  background: #fff;
+}
+
+.nav li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 10px;
+}
+
+.nav li > a.selected {
+  color: #ff0000;
+}

@@ -1,12 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './utils/flexible'
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ConnectedRouter } from 'connected-react-router'
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import App from './app'
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let DevTools = React.Fragment;
+let isDev = process.env.NODE_ENV === 'development'
+if (isDev) {
+  DevTools = require('./DevTools').default;
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const initialState = window.INITIAL_STATE || {}
+delete window.INITIAL_STATE
+
+// requires and returns all modules that match
+const requireAll = requireContext => requireContext.keys().map(requireContext)
+// import all svg
+const req = require.context('./assets/icons', true, /\.svg$/)
+requireAll(req)
+
+const {store, history} = configureStore(initialState)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>
+        <App/>
+        {/*<DevTools />*/}
+      </div>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+)
+
+// service worker
 serviceWorker.unregister();
+
+if (isDev && module.hot) {
+  module.hot.accept()
+  // module.hot.accept('./app',() => {
+  //     render(App);
+  // });
+}
