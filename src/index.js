@@ -6,7 +6,7 @@ import configureStore from './models/configureStore'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-let DevTools = null
+let DevTools = React.Fragment
 let isDev = process.env.NODE_ENV === 'development'
 if (isDev) {
   DevTools = require('./DevTools').default
