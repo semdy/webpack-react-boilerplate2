@@ -1,17 +1,17 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React from "react"
+import { Switch, Route, Redirect } from "react-router-dom"
 
-function renderRoutes(routes, authed, authPath = '/login', extraProps = {}, switchProps = {}) {
+function renderRoutes(routes, isLogin, authPath = '/login', extraProps = {}, switchProps = {}) {
   return routes ? (
     <Switch {...switchProps}>
       {routes.map((route, i) => (
         <Route
-          key={route.key || i}
-          path={route.path}
-          exact={route.exact}
-          strict={route.strict}
-          render={props => {
-            if (!route.requiresAuth || authed || route.path === authPath) {
+          key={ route.key || i }
+          path={ route.path }
+          exact={ route.redirect ? true : route.exact }
+          strict={ route.strict }
+          render={ props => {
+            if (!route.requireAuth || isLogin || route.path === authPath) {
               if (route.redirect) {
                 return <Redirect to={{ pathname: route.redirect, state: { from: props.location } }} />
               }
@@ -19,11 +19,9 @@ function renderRoutes(routes, authed, authPath = '/login', extraProps = {}, swit
                 return route.render({ ...props, ...extraProps, route: route })
               }
               if (route.component) {
-                // return <React.Suspense fallback={null}>
-                //   <route.component {...props} {...extraProps} route={route}/>
-                // </React.Suspense>
-
-                return <route.component {...props} {...extraProps} route={route}/>
+                return <route.component {...props} {...extraProps} route={ route }>
+                  { route.routes && renderRoutes(route.routes, isLogin, authPath) }
+                </route.component>
               }
               return null
             }
@@ -32,7 +30,7 @@ function renderRoutes(routes, authed, authPath = '/login', extraProps = {}, swit
         />
       ))}
     </Switch>
-  ) : null;
+  ) : null
 }
 
-export default renderRoutes;
+export default renderRoutes

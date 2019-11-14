@@ -25,6 +25,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const pxtorem = require('postcss-pxtorem');
 const eslint = require('eslint');
 
 const postcssNormalize = require('postcss-normalize');
@@ -36,6 +37,8 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
+
+const shouldPxToRem =  process.env.PX_TO_REM;
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
@@ -119,7 +122,23 @@ module.exports = function(webpackEnv) {
             // so that it honors browserslist config in package.json
             // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize(),
-          ],
+            shouldPxToRem && pxtorem({
+              rootValue: 37.5,
+              propList: [
+                "*",
+                "!border",
+                "!border-top",
+                "!border-right",
+                "!border-bottom",
+                "!border-left",
+                "!border-width",
+                "!border-top-width",
+                "!border-right-width",
+                "!border-bottom-width",
+                "!border-left-width"
+              ]
+            })
+          ].filter(Boolean),
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
       },
@@ -155,6 +174,7 @@ module.exports = function(webpackEnv) {
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
+      isEnvDevelopment && 'react-hot-loader/patch',
       // Include an alternative client for WebpackDevServer. A client's job is to
       // connect to WebpackDevServer by a socket and get notified about changes.
       // When you save a file, the client will either apply hot updates (in case
@@ -315,6 +335,7 @@ module.exports = function(webpackEnv) {
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
+        '@': paths.appSrc,
         ...(modules.webpackAliases || {}),
       },
       plugins: [
@@ -398,6 +419,11 @@ module.exports = function(webpackEnv) {
               loader: 'svg-sprite-loader',
               include: paths.appIcons
             },
+            {
+              test: /\.json$/,
+              loader: 'json-loader',
+              include: paths.appSrc
+            },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
@@ -410,6 +436,7 @@ module.exports = function(webpackEnv) {
                 ),
 
                 plugins: [
+                  isEnvDevelopment && 'react-hot-loader/babel',
                   [
                     require.resolve('babel-plugin-named-asset-import'),
                     {

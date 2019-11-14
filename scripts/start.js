@@ -62,7 +62,7 @@ if (process.env.HOST) {
 }
 
 // We require that you explicitly set browsers and do not fall back to
-// browserslist defaults.
+// browserslist def aults.
 const { checkBrowsers } = require('react-dev-utils/browsersHelper');
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {

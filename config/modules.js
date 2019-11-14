@@ -63,24 +63,18 @@ function getAdditionalModulePaths(options = {}) {
  */
 function getWebpackAliases(options = {}) {
   const baseUrl = options.baseUrl;
-  const baseAlias = {
-    '@': paths.appSrc,
-  }
 
   if (!baseUrl) {
-    return baseAlias;
+    return {};
   }
 
   const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
 
   if (path.relative(paths.appPath, baseUrlResolved) === '') {
     return {
-      ...baseAlias,
       src: paths.appSrc,
     };
   }
-
-  return baseAlias
 }
 
 /**

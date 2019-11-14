@@ -2,16 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom"
 import DocumentTitle from 'react-document-title'
-import renderRoutes from '@/utils/renderRoutes'
+import { Layout } from 'antd'
 import './BasicLayout.less'
+
+const { Content } = Layout
 
 const Footer = React.lazy(() => import('./Footer'))
 
 class BasicLayout extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     const {
       dispatch,
@@ -55,18 +53,6 @@ class BasicLayout extends React.Component {
   }
 
   render() {
-    const {
-      navTheme,
-      layout: PropsLayout,
-      children,
-      location: { pathname },
-      isMobile,
-      menuData,
-      breadcrumbNameMap,
-      route: { routes },
-      fixedHeader
-    } = this.props
-
     return (
       <DocumentTitle title={"主界面"}>
         <div>
@@ -77,12 +63,15 @@ class BasicLayout extends React.Component {
               <li><NavLink activeClassName="selected" to="/animate">Animate</NavLink></li>
               <li><NavLink activeClassName="selected" to="/notfound">NotFound</NavLink></li>
             </ul>
-            <React.Suspense fallback={null}>
-              <Footer />
-            </React.Suspense>
+            <Layout>
+              <Content>
+                { this.props.children }
+              </Content>
+            </Layout>
           </div>
-          {/*{ renderRoutes(this.props.route.routes) }*/}
-
+          <React.Suspense fallback={null}>
+            <Footer />
+          </React.Suspense>
         </div>
       </DocumentTitle>
     )
