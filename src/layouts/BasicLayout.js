@@ -59,7 +59,6 @@ class BasicLayout extends React.Component {
           <div>
             <ul className="nav">
               <li><NavLink activeClassName="selected" exact to="/todoList">TodoList</NavLink></li>
-              <li><NavLink activeClassName="selected" to="/test">Test</NavLink></li>
               <li><NavLink activeClassName="selected" to="/animate">Animate</NavLink></li>
               <li><NavLink activeClassName="selected" to="/notfound">NotFound</NavLink></li>
             </ul>

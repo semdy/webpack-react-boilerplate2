@@ -12,10 +12,6 @@ export default [
         component: AsyncComponent(() => import(/* webpackChunkName: "TodoList" */ "./pages/TodoList/TodoList"))
       },
       {
-        path: "/test",
-        component: AsyncComponent(() => import(/* webpackChunkName: "Test" */ "./pages/Test/Test")),
-      },
-      {
         path: "/animate",
         component: AsyncComponent(() => import(/* webpackChunkName: "animate" */ "./pages/animate/animate")),
       },
