@@ -19,7 +19,7 @@ export default class AddTodo extends Component {
     let input
     return (
       <div className={styles.todoWrapper}>
-        <Icon name={'raise-up'} size={'40px'} color={'#ff0000'}></Icon>
+        <Icon name='raise-up' size='40px' color='#ff0000' />
         <form onSubmit={e => {
           e.preventDefault()
           if (!input.value.trim()) {
