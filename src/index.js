@@ -1,5 +1,3 @@
-import './utils/flexible'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ConnectedRouter } from 'connected-react-router'
@@ -29,8 +27,8 @@ const render = Component => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Component/>
-        <DevTools/>
+        <Component />
+        <DevTools />
       </ConnectedRouter>
     </Provider>,
     document.getElementById('root')

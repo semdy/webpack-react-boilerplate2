@@ -54,7 +54,7 @@ class BasicLayout extends React.Component {
 
   render() {
     return (
-      <DocumentTitle title={"主界面"}>
+      <DocumentTitle title="主界面">
         <div>
           <div>
             <ul className="nav">
