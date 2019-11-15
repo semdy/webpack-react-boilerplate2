@@ -9,12 +9,13 @@ const Icon = (
     size,
     color,
     type,
-    style
+    style,
+    ...rest
   }
 ) => {
   const styles = { ...style, color: color, fontSize: size }
   return (
-    <div className={['app-icon', className].join(' ')} style={styles}>
+    <div {...rest} className={['app-icon', className].join(' ')} style={styles}>
       {
         type === 'svg' ?
           <svg className="icon-symbol">
