@@ -77,6 +77,7 @@ module.exports = {
   appSrc: resolveApp('src'),
   appImages: resolveApp('src/assets/img'),
   appIcons: resolveApp('src/assets/icons'),
+  themeConfig: resolveApp('src/theme.config'),
   appTsConfig: resolveApp('tsconfig.json'),
   appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
