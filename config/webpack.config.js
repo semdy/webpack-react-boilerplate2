@@ -31,6 +31,7 @@ const eslint = require('eslint');
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
+const themeConfig = require(paths.themeConfig);
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -156,6 +157,7 @@ module.exports = function(webpackEnv) {
           options: {
             sourceMap: true,
             javascriptEnabled: true,
+            modifyVars: themeConfig || {},
           },
         }
       );
