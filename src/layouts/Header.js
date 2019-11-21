@@ -116,7 +116,9 @@ class HeaderView extends Component {
   }
 }
 
-export default withRouter(connect(({ user, global, setting, loading }) => ({
-  currentUser: user.currentUser,
-  setting
-}))(HeaderView))
+export default withRouter(
+  connect(({ user, global, setting, loading }) => ({
+    currentUser: user.currentUser,
+    setting
+  }))(HeaderView)
+)

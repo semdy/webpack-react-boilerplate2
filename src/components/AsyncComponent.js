@@ -1,9 +1,9 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import PageLoading from '@/components/PageLoading'
 
 export default (importComponent, placeholder = <PageLoading />) => {
   class AsyncComponent extends Component {
-    constructor (props) {
+    constructor(props) {
       super(props)
 
       this.state = {
@@ -11,7 +11,7 @@ export default (importComponent, placeholder = <PageLoading />) => {
       }
     }
 
-    async componentDidMount () {
+    async componentDidMount() {
       const component = await importComponent()
 
       this.setState({
@@ -19,7 +19,7 @@ export default (importComponent, placeholder = <PageLoading />) => {
       })
     }
 
-    render () {
+    render() {
       const C = this.state.component
 
       return C ? <C {...this.props} /> : placeholder

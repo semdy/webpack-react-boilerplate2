@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 class Todo extends React.Component {
   render() {
     return (
       <li
         onClick={this.props.onClick}
-        style={{textDecoration: this.props.completed ? 'line-through' : 'none'}}
+        style={{ textDecoration: this.props.completed ? 'line-through' : 'none' }}
       >
         {this.props.text}
       </li>
@@ -14,4 +14,3 @@ class Todo extends React.Component {
 }
 
 export default Todo
-

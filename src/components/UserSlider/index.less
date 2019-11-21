@@ -1,0 +1,31 @@
+@import '~antd/lib/style/themes/default.less';
+
+.ant-carousel {
+  .slick-slide {
+    text-align: center;
+    height: 285px;
+    line-height: 285px;
+    background: lighten(@primary-color, 15%);
+    overflow: hidden;
+
+    h3 {
+      color: #fff;
+      font-size: 30px;
+    }
+  }
+
+  .slick-dots-bottom {
+    bottom: 20px;
+  }
+
+  .slick-dots li {
+    margin-left: 4px;
+    margin-right: 4px;
+
+    button {
+      width: 12px !important;
+      height: 12px;
+      border-radius: 50%;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { formatMessage, setLocale, getLocale } from 'umi/locale'
+import { setLocale, getLocale } from 'umi/locale'
 import { Menu, Icon } from 'antd'
 import classNames from 'classnames'
 import HeaderDropdown from '../HeaderDropdown'
@@ -41,7 +41,7 @@ export default class SelectLang extends PureComponent {
     return (
       <HeaderDropdown overlay={langMenu} placement="bottomRight">
         <span className={classNames(styles.dropDown, className)}>
-          <Icon type="global" title={formatMessage({ id: 'navBar.lang' })} />
+          <Icon type="global" title="选择语言" />
         </span>
       </HeaderDropdown>
     )

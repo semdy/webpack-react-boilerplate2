@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
 import { Layout } from 'antd'
 import './BasicLayout.less'
@@ -40,32 +40,30 @@ class BasicLayout extends React.Component {
     }
   }
 
-  getContext() {
-    const { location, breadcrumbNameMap } = this.props
-    return {
-      location,
-      breadcrumbNameMap
-    }
-  }
-
-  getPageTitle = (pathname, breadcrumbNameMap) => {
-    return '2222'
-  }
-
   render() {
     return (
       <DocumentTitle title="主界面">
         <div>
           <div>
             <ul className="nav">
-              <li><NavLink activeClassName="selected" exact to="/todoList">TodoList</NavLink></li>
-              <li><NavLink activeClassName="selected" to="/animate">Animate</NavLink></li>
-              <li><NavLink activeClassName="selected" to="/notfound">NotFound</NavLink></li>
+              <li>
+                <NavLink activeClassName="selected" exact to="/todoList">
+                  TodoList
+                </NavLink>
+              </li>
+              <li>
+                <NavLink activeClassName="selected" to="/animate">
+                  Animate
+                </NavLink>
+              </li>
+              <li>
+                <NavLink activeClassName="selected" to="/notfound">
+                  NotFound
+                </NavLink>
+              </li>
             </ul>
             <Layout>
-              <Content>
-                { this.props.children }
-              </Content>
+              <Content>{this.props.children}</Content>
             </Layout>
           </div>
           <React.Suspense fallback={null}>
@@ -77,6 +75,4 @@ class BasicLayout extends React.Component {
   }
 }
 
-export default connect(({ global, setting, menu: menuModel }) => ({
-
-}))(BasicLayout)
+export default connect(() => ({}))(BasicLayout)

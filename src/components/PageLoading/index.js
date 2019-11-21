@@ -2,7 +2,9 @@ import React from 'react'
 import { Spin } from 'antd'
 
 export default () => (
-  <div style={{ paddingTop: 100, textAlign: 'center' }}>
+  <div
+    style={{ position: 'fixed', left: 0, right: 0, top: '30%', textAlign: 'center', zIndex: 1000 }}
+  >
     <Spin size="large" />
   </div>
 )

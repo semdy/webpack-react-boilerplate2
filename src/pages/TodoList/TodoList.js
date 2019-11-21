@@ -1,14 +1,14 @@
-import React from 'react';
-import AddTodo from './AddTodo';
-import VisibleTodoList from './VisibleTodoList';
-import Footer from './Footer';
+import React from 'react'
+import AddTodo from './AddTodo'
+import VisibleTodoList from './VisibleTodoList'
+import Footer from './Footer'
 
 const Home = () => (
   <div>
-    <AddTodo/>
-    <VisibleTodoList/>
-    <Footer/>
+    <AddTodo />
+    <VisibleTodoList />
+    <Footer />
   </div>
-);
+)
 
-export default Home;
+export default Home

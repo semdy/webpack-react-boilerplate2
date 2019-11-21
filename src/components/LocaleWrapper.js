@@ -12,17 +12,18 @@
 // })()
 
 import React from 'react'
-import { /*addLocaleData,*/ IntlProvider } from 'react-intl'
-import { ConfigProvider  } from 'antd'
+import { /* addLocaleData, */ IntlProvider } from 'react-intl'
+import { ConfigProvider } from 'antd'
 import 'moment/locale/zh-cn'
 import 'moment/locale/pt-br'
-import 'moment/locale/zh-cn'
+
 import 'moment/locale/zh-tw'
 
 const baseNavigator = true
 const useLocalStorage = true
 
 let defaultAntd = require('antd/lib/locale-provider/zh_CN')
+
 defaultAntd = defaultAntd.default || defaultAntd
 
 const localeInfo = {
@@ -66,9 +67,11 @@ let appLocale = {
   momentLocale: 'zh-cn'
 }
 
-if (useLocalStorage &&
+if (
+  useLocalStorage &&
   localStorage.getItem('ims_locale') &&
-  localeInfo[localStorage.getItem('ims_locale')]) {
+  localeInfo[localStorage.getItem('ims_locale')]
+) {
   appLocale = localeInfo[localStorage.getItem('ims_locale')]
 } else if (localeInfo[navigator.language] && baseNavigator) {
   appLocale = localeInfo[navigator.language]
@@ -77,11 +80,13 @@ if (useLocalStorage &&
 }
 // appLocale.data && addLocaleData(appLocale.data)
 
-export default function LocaleWrapper (props) {
+export default function LocaleWrapper(props) {
   return (
     <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
-      <ConfigProvider locale={appLocale.antd ? (appLocale.antd.default || appLocale.antd) : defaultAntd}>
-        { props.children }
+      <ConfigProvider
+        locale={appLocale.antd ? appLocale.antd.default || appLocale.antd : defaultAntd}
+      >
+        {props.children}
       </ConfigProvider>
     </IntlProvider>
   )

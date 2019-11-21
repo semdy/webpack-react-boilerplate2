@@ -62,3 +62,13 @@ export function getQueryPath(path = '', query = {}) {
   }
   return path
 }
+
+export function isEmptyObject(obj) {
+  if (typeof obj === 'object') {
+    if (obj === null) return true
+    if (obj === window) return false
+    return Object.keys(obj).length === 0
+  } else {
+    throw new Error('arg "obj" is not an object')
+  }
+}

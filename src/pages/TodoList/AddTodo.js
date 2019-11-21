@@ -9,37 +9,38 @@ import styles from './addTodo.module.less'
 @connect(
   state => ({ counter: state.counter }),
   dispatch => ({
-    //addTodo: (...args) => dispatch(addTodo(...args)),
+    // addTodo: (...args) => dispatch(addTodo(...args)),
     ...bindActionCreators({ addTodo }, dispatch)
   })
 )
 export default class AddTodo extends Component {
-
-  render () {
+  render() {
     let input
     return (
       <div className={styles.todoWrapper}>
-        <Icon name='raise-up' size='40px' color='#ff0000' />
-        <form onSubmit={e => {
-          e.preventDefault()
-          if (!input.value.trim()) {
-            return
-          }
-          this.props.addTodo(input.value)
-          input.value = ''
-        }}>
-          <input ref={node => {
-            input = node
-          }}/>
-          <button type="submit">
-            Add Todo
-          </button>
+        <Icon name="raise-up" size="40px" color="#ff0000" />
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            if (!input.value.trim()) {
+              return
+            }
+            this.props.addTodo(input.value)
+            input.value = ''
+          }}
+        >
+          <input
+            ref={node => {
+              input = node
+            }}
+          />
+          <button type="submit">Add Todo</button>
         </form>
       </div>
     )
   }
-};
+}
 
-//AddTodo = connect()(AddTodo);
+// AddTodo = connect()(AddTodo);
 
-//export default AddTodo
+// export default AddTodo

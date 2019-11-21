@@ -1,14 +1,24 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import renderRoutes from '@/utils/renderRoutes'
-import LocaleWrapper from "@/components/LocaleWrapper"
-import routes from './router.config'
+import LocaleWrapper from '@/components/LocaleWrapper'
+import routes from './pages/router.config'
 
-import './styles/app.scss'
+import './styles/app.less'
 import './components/Animate/animate.less'
 
-const App = () =>
-  <LocaleWrapper>
-    { renderRoutes(routes) }
-  </LocaleWrapper>
+const App = ({ isLogin }) => {
+  return (
+    <LocaleWrapper>
+      { renderRoutes(routes, isLogin) }
+    </LocaleWrapper>
+  )
+}
 
-export default App
+const mapStateToProps = state => {
+  return {
+    isLogin: !!state.login.token
+  }
+}
+
+export default connect(mapStateToProps)(App)

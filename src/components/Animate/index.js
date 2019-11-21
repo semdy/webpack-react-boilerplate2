@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import RcAnimate from 'rc-animate'
 
-const AnimateEl = (props) => {
+const AnimateEl = props => {
   const {
     style,
     visible,
@@ -22,23 +22,15 @@ const AnimateEl = (props) => {
 
   if (!visible && removeable) return null
 
-  let newStyle = Object.assign({}, style, {
-    display: visible ? undefined : 'none'
-  })
+  const newStyle = { ...style, display: visible ? undefined : 'none' }
 
-  return (
-    <div {...restProps} style={newStyle}/>
-  )
+  return <div {...restProps} style={newStyle} />
 }
 
 class Animate extends Component {
-  render () {
+  render() {
     return (
-      <RcAnimate {...this.props}>
-        {
-          this.props.exclusive && <AnimateEl {...this.props}/>
-        }
-      </RcAnimate>
+      <RcAnimate {...this.props}>{this.props.exclusive && <AnimateEl {...this.props} />}</RcAnimate>
     )
   }
 }

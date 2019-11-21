@@ -1,12 +1,15 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 
-import todos from './todo';
-import visibilityFilter from './visibilityFilter';
+import login from './login'
+import todos from './todo'
+import visibilityFilter from './visibilityFilter'
 
-const createRootReducer = (history) => combineReducers({
-  router: connectRouter(history),
-  todos,
-  visibilityFilter
-})
+const createRootReducer = history =>
+  combineReducers({
+    router: connectRouter(history),
+    login,
+    todos,
+    visibilityFilter
+  })
 export default createRootReducer

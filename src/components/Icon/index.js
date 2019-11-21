@@ -2,33 +2,19 @@ import React from 'react'
 import propTypes from 'prop-types'
 import './icon.less'
 
-const Icon = (
-  {
-    name,
-    className,
-    size,
-    color,
-    type,
-    style,
-    ...rest
-  }
-) => {
-  const styles = { ...style, color: color, fontSize: size }
+const Icon = ({ name, className, size, color, type, style, ...rest }) => {
+  const styles = { ...style, color, fontSize: size }
   return (
     <div {...rest} className={['app-icon', className].join(' ')} style={styles}>
-      {
-        type === 'svg' ?
-          <svg className="icon-symbol">
-            <use xlinkHref={`#${name}`}/>
-          </svg>
-          :
-          (
-            type === 'iconfont' ?
-              <i className={['iconfont', `icon-${name}`].join(' ')} />
-              :
-              <img className="icon-symbol" src={require(`@/assets/img/${name}.png`)} alt={ name } />
-          )
-      }
+      {type === 'svg' ? (
+        <svg className="icon-symbol">
+          <use xlinkHref={`#${name}`} />
+        </svg>
+      ) : type === 'iconfont' ? (
+        <i className={['iconfont', `icon-${name}`].join(' ')} />
+      ) : (
+        <img className="icon-symbol" src={require(`@/assets/img/${name}.png`)} alt={name} />
+      )}
     </div>
   )
 }

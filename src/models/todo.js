@@ -1,21 +1,21 @@
 /* 传入旧的state和作用的action返回一个新state */
 
-let nextTodoId = 0;
+let nextTodoId = 0
 
-export const addTodo = (text) => {
+export const addTodo = text => {
   return {
     type: 'ADD_TODO',
     id: nextTodoId++,
     text
   }
-};
+}
 
-export const toggleTodo = (id) => {
+export const toggleTodo = id => {
   return {
     type: 'TOGGLE_TODO',
     id
   }
-};
+}
 
 /* 一个待办项 */
 const todo = (state, action) => {
@@ -25,32 +25,30 @@ const todo = (state, action) => {
         id: action.id,
         text: action.text,
         completed: false // 刚传入的待办项未完成
-      };
+      }
     case 'TOGGLE_TODO':
       if (state.id !== action.id) {
         return state
       }
-      return Object.assign({}, state, { // 把state和completed合并成一个对象返回
+      return {
+        ...state, // 把state和completed合并成一个对象返回
         completed: !state.completed
-      });
+      }
     default:
       return state
   }
-};
+}
 
 /* 全部待办项列表 */
 const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ];
+      return [...state, todo(undefined, action)]
     case 'TOGGLE_TODO':
-      return state.map(t => todo(t, action));
+      return state.map(t => todo(t, action))
     default:
-      return state;
+      return state
   }
-};
+}
 
 export default todos

@@ -3,7 +3,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     proxy({
-      target: '',
+      target: 'http://47.103.143.86:6001',
       changeOrigin: true,
       pathRewrite: { '^/api': '' }
     })

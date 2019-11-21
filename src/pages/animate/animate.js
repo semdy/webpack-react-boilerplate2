@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import Animate from '@/components/Animate';
+import React, { Component } from 'react'
+import Animate from '@/components/Animate'
 
 export default class AnimateApp extends Component {
   state = {
     visible: true
-  };
+  }
 
   handleChange() {
     this.setState({
       visible: false
-    });
+    })
   }
 
   render() {
@@ -17,13 +17,11 @@ export default class AnimateApp extends Component {
       <Animate
         visible={this.state.visible}
         transitionName="fade"
-        style={{width: 100, height: 100, margin: 50, border:'1px solid #ff0000'}}
+        style={{ width: 100, height: 100, margin: 50, border: '1px solid #ff0000' }}
         onClick={() => this.handleChange()}
       >
-        <span>
-          动画测试
-        </span>
+        <span>动画测试</span>
       </Animate>
     )
   }
-};
+}

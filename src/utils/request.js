@@ -1,6 +1,6 @@
 import { notification } from 'antd'
 
-const serverUrl = process.env.NODE_ENV !== 'production' ? '/api' : 'http://localhost:6001'
+const serverUrl = process.env.NODE_ENV !== 'production' ? '/api' : 'http://47.103.143.86:6001'
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -19,9 +19,7 @@ const codeMessage = {
   504: '网关超时。'
 }
 
-/*const getToken = () =>
-  // eslint-disable-next-line
-  window.g_app._store.getState().login.token || localStorage.getItem('__TOKEN')*/
+const getToken = () => localStorage.getItem('__TOKEN')
 
 const parseParams = (params = {}) => {
   const result = Object.keys(params).map(key => {
@@ -65,7 +63,7 @@ export default function request(url, options = {}) {
   const defaultOptions = {
     // credentials: 'include',
     headers: {
-      // token: getToken()
+      token: getToken()
     }
   }
   const newOptions = { ...defaultOptions, ...options }
@@ -116,7 +114,7 @@ export default function request(url, options = {}) {
     .then(response => {
       if (response.code === 0) {
         isLogout = false
-        return response.data
+        return response.data || ''
       }
       if (response.code === 98) {
         // token过期

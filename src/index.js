@@ -2,15 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
-import configureStore from './models/configureStore'
+import createStore from './models/createStore'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
-let DevTools = React.Fragment
-let isDev = process.env.NODE_ENV === 'development'
-if (isDev) {
-  DevTools = require('./DevTools').default
-}
+// const DevTools = React.Fragment
+const isDev = process.env.NODE_ENV === 'development'
+// if (isDev) {
+//   DevTools = require('./DevTools').default
+// }
 
 const initialState = window.INITIAL_STATE || {}
 delete window.INITIAL_STATE
@@ -21,14 +21,13 @@ const requireAll = requireContext => requireContext.keys().map(requireContext)
 const req = require.context('./assets/icons', true, /\.svg$/)
 requireAll(req)
 
-const { store, history } = configureStore(initialState)
+const { store, history } = createStore(initialState)
 
 const render = Component => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Component />
-        <DevTools />
       </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
