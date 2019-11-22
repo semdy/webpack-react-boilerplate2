@@ -36,4 +36,4 @@ Icon.propTypes = {
   style: propTypes.object
 }
 
-export default Icon
+export default React.memeo(Icon)

@@ -69,4 +69,4 @@ VerifyInput.propTypes = {
   onComplete: propTypes.func
 }
 
-export default VerifyInput
+export default React.memo(VerifyInput)

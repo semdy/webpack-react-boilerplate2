@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import RcAnimate from 'rc-animate'
 
@@ -27,12 +27,12 @@ const AnimateEl = props => {
   return <div {...restProps} style={newStyle} />
 }
 
-class Animate extends Component {
-  render() {
-    return (
-      <RcAnimate {...this.props}>{this.props.exclusive && <AnimateEl {...this.props} />}</RcAnimate>
-    )
-  }
+const Animate = props => {
+  return (
+    <RcAnimate {...props}>
+      {props.exclusive && <AnimateEl {...props} />}
+    </RcAnimate>
+  )
 }
 
 Animate.propTypes = {
@@ -49,4 +49,4 @@ Animate.defaultProps = {
   exclusive: true
 }
 
-export default Animate
+export default React.memo(Animate)

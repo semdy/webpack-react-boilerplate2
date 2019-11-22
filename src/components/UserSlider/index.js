@@ -19,4 +19,4 @@ const UserSlider = () => (
   </Carousel>
 )
 
-export default UserSlider
+export default React.memo(UserSlider)

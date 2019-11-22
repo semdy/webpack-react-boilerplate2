@@ -25,4 +25,4 @@ const GlobalFooter = ({ className, links, copyright }) => {
   )
 }
 
-export default GlobalFooter
+export default React.memo(GlobalFooter)

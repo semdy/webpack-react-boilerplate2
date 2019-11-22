@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PageLoading from '@/components/PageLoading'
 
 export default (importComponent, placeholder = <PageLoading />) => {
-  class AsyncComponent extends Component {
+  class AsyncComponent extends PureComponent {
     constructor(props) {
       super(props)
 
